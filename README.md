@@ -112,7 +112,7 @@ STIMULUS_LABEL_SAVE_STRING = "pieman"
 
 
 
-## Multivariate Regression
+## NNLS Multivariate Regression
 6. NNLS Multivariate Regression
 
 Load your trait RDMs and run non‐negative least squares (NNLS) models via NNLS_analysis/NNLS_mult_reg.ipynb:
