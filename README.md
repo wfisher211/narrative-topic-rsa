@@ -93,7 +93,7 @@ tr_slice = slice(19, 179)  # reachforstars uses (647, 807) if full-run indexing
 
   
 
-## Trait RDM
+## Trait RDM Construction
 5. Trait RDM Construction
 
 For each stimulus, generate trait-based representational dissimilarity matrices (RDMs) using updated_trait_rating_rdm_script.ipynb:
