@@ -39,15 +39,15 @@ This repository provides a complete pipeline for performing representational sim
    datalad install https://datasets.datalad.org/labs/hasson/narratives/derivatives/fmriprep
 
 2.	**Fetch only the files you need**
-    Adjust the stimulus label (forgot, black, pieman, notthefallintact, slumlordreach, reachforstars):
+    Adjust the stimulus label (STIM_LABEL) to one of the following  (forgot, black, pieman, notthefallintact, slumlordreach, reachforstars):
 
     datalad get \
-    sub-*/func/task-<STIM>_space-MNI152NLin2009cAsym*_{
+    sub-*/func/task-(STIM_LABEL)_space-MNI152NLin2009cAsym*_{
       desc-preproc_bold.nii.gz,
       desc-preproc_bold.json,
       desc-brain_mask.nii.gz
     } \
-    sub-*/func/*task-<STIM>*_desc-confounds_regressors.{tsv,json}
+    sub-*/func/*task-(STIM_LABEL)*_desc-confounds_regressors.{tsv,json}
 
 ## Data Preparation
 
