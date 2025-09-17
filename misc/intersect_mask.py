@@ -27,7 +27,6 @@ output_mask = os.path.join(base_dir,
                            f'group_task-{task_label}_intersect_mask.nii.gz')
 
 # TR indices to keep
-tr_slice = slice(13, 173)
 TR = 1.5
 
 # Exclusions
@@ -46,6 +45,16 @@ preferred_res   = 'native'
 # e.g. target_subject = 'sub-002' 
 # or target_subject = None  to run on all (minus excluded)
 
+# Expected # subject-run CSVs that should exist after NNLS per-parcel analysis
+EXPECTED_COUNT = {
+    "slumlordreach":   17,
+    "pieman":          75,
+    "black":           46,
+    "forgot":          46,
+    "reachforstars":   17,
+    "notthefallintact":54,
+}
+
 # -----------------------------------------------------------------------------
 # 2) BUILD LIST OF SUBJECTS
 # -----------------------------------------------------------------------------
@@ -61,7 +70,7 @@ subjects = [s for s in all_subs if s not in exclude_subs]
 # 3) MAKE GROUP INTERSECT MASK
 # -----------------------------------------------------------------------------
 # where to save the mask
-deriv_mask_dir = os.path.join(base_dir, 'derivatives', 'pieMan_masks')
+deriv_mask_dir = os.path.join(base_dir, 'derivatives', f'{task_label}_masks')
 os.makedirs(deriv_mask_dir, exist_ok=True)
 # redefine output_mask to live under derivatives/
 output_mask = os.path.join(
@@ -91,12 +100,25 @@ for sub in subjects:
         m   = re.search(r"_run-(\d+)_", fp)
         run = m.group(1) if m else None
         if run and (sub,run) in exclude_sub_runs:
-            print(f"  • skipping {sub} run-{run}")
+            # print(f"  • skipping {sub} run-{run}")
             continue
         mask_files.append(fp)
 
 if not mask_files:
     raise RuntimeError("No masks found after exclusions!")
+
+# assert we have right number of files per stimulus 
+n_expected = EXPECTED_COUNT.get(task_label)
+
+if n_expected is not None:                       # we listed this stim above
+    assert len(mask_files) == n_expected, (
+        f"[{task_label}] expected {n_expected} files "
+        f"but found {len(mask_files)}"
+    )
+else:                                            # stim not in table → just sanity-check
+    if len(mask_files) == 0:
+        raise ValueError(f"No CSVs found for {task_label}")
+
 
 print(f"Found {len(mask_files)} masks, intersecting…")
 intersect = intersect_masks(mask_files,
@@ -109,9 +131,9 @@ mask_img = load_img(output_mask)
 print("Saved group intersect mask to:", output_mask)
 
 
-# for future stims (not Pieman) - 
-# add a dictaionry at the start to get num subs
-assert len(mask_files) == 75, f"Expected 75 masks, found {len(mask_files)}"
+
+    
+
 
 
 
