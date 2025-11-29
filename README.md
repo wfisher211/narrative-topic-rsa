@@ -18,7 +18,6 @@ This repository provides a complete pipeline for performing representational sim
 6. [NNLS Multivariate Regression](#nnls-multivariate-regression)  
 7. [Permutation Testing](#permutation-testing)  
 8. [Visualization](#visualization)  
-9. [Contact & License](#contact--license)  
 
 ---
 
