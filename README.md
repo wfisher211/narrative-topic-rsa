@@ -1,7 +1,7 @@
 # narrative-topic-rsa
 Narratives Dataset Analysis Pipeline
 
-**What this project asks.** As people listen to a story, do their brain activity patterns track how the storyteller comes across from moment to moment, and where in the brain is that visible? Independent raters listened to each Narratives story and continuously rated the speaker on one of 13 dimensions (the Big Five personality traits and eight mental states, such as curiosity and annoyance). If a brain region tracks one of these impressions, moments that were rated similarly should also evoke similar fMRI activity patterns in that region. For each parcel, the pipeline builds a moment-by-moment neural dissimilarity matrix, uses non-negative least squares to estimate which combination of the 13 rating-based matrices best explains it, and tests the result with permutation tests. The pipeline uses the fMRIPrep derivatives of the Narratives dataset (Nastase et al., 2021, Scientific Data). You’ll find steps for data download, preprocessing, trait RDM creation, NNLS regression, permutation testing, and visualization.
+**What this project asks.** As people listen to a story, do their brain activity patterns track how the storyteller comes across from moment to moment, and where in the brain is that visible? Independent raters listened to each Narratives story and continuously rated the speaker on one of 13 dimensions (the Big Five personality traits and eight mental states, such as contemplating and peaceful). If a brain region tracks one of these impressions, moments that were rated similarly should also evoke similar fMRI activity patterns in that region. For each parcel, the pipeline builds a moment-by-moment neural dissimilarity matrix, uses non-negative least squares to estimate which combination of the 13 rating-based matrices best explains it, and tests the result with permutation tests. The pipeline uses the fMRIPrep derivatives of the Narratives dataset (Nastase et al., 2021, Scientific Data). You’ll find steps for data download, preprocessing, trait RDM creation, NNLS regression, permutation testing, and visualization.
 
 ---
 
@@ -65,6 +65,7 @@ exclude_sub_runs = {
     ("sub-002","2"),("sub-003","2"),("sub-004","2"),("sub-005","2"),("sub-006","2"),
     ("sub-008","2"),("sub-010","2"),("sub-011","2"),("sub-012","2"),("sub-013","2"),
     ("sub-014","2"),("sub-015","2"),("sub-016","2")
+	}
 
 notthefallintact:
 exclude_subs = {"sub-317","sub-335"}
