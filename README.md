@@ -49,8 +49,8 @@ Narratives Dataset Analysis Pipeline
 
 ## Data Preparation
 
- 3.1 Pulling Preprocessed BOLD & Confounds
- Run the above datalad get command separately for each stimulus of interest (replace <STIM>).
+ 3.1  Preprocessed BOLD & Confounds
+ Run the above datalad get command separately for each stimulus of interest (replace (STIM_LABEL)).
 
  3.2 Building Intersect Masks
  Use intersect_mask.ipynb to compute a group‐level intersection mask for each stimulus.
