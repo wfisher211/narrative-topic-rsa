@@ -32,27 +32,28 @@ Narratives Dataset Analysis Pipeline
 
 ## Data Download
 
-1. **Install with DataLad**  
-   
+
+1. **Install the fMRIPrep derivatives with DataLad.** This downloads only the file structure, not the imaging data:
+
+   ```bash
    datalad install https://datasets.datalad.org/labs/hasson/narratives/derivatives/fmriprep
+   ```
 
-2.	**Fetch only the files you need**
-    Adjust the stimulus label (STIM_LABEL) to one of the following  (forgot, black, pieman, notthefallintact, slumlordreach, reachforstars):
+2. **Fetch the files for one story** with `download_stim.py`, run from this repository:
 
-    datalad get \
-    sub-*/func/task-(STIM_LABEL)_space-MNI152NLin2009cAsym*_{
-      desc-preproc_bold.nii.gz,
-      desc-preproc_bold.json,
-      desc-brain_mask.nii.gz
-    } \
-    sub-*/func/*task-(STIM_LABEL)*_desc-confounds_regressors.{tsv,json}
+   ```bash
+   python download_stim.py <path-to-fmriprep> <stim>
+   ```
+
+   `<stim>` is one of `forgot`, `black`, `pieman`, `notthefallintact`, `slumlordreach`, `reachforstars`. The script gets the MNI-space preprocessed BOLD, its JSON sidecar, the brain mask and the confounds file for every run of that story. It prints the file count (five per run; 480 for `pieman`) and asks before downloading. Run it once per story.
+
+   The script needs the DataLad Python package (`pip install datalad`) as well as the `datalad` command. It works on Windows, macOS and Linux.
 
 ## Data Preparation
 
- 3.1  Preprocessed BOLD & Confounds
- Run the above datalad get command separately for each stimulus of interest (replace (STIM_LABEL)).
+### 3.1 Subject exclusions
 
- 3.2 Building Intersect Masks
+ Building Intersect Masks
  Use intersect_mask.ipynb to compute a group‐level intersection mask for each stimulus.
  Set relevant subject exclusions for each stimulus:
 
